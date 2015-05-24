@@ -6,7 +6,7 @@
 	<title>UX Tools</title>
 	<style>
 		#recordDiv {
-			height: 300px;
+			height: 100%;
 			background: #EEEEEE;
 			border: 2px groove;
 			
@@ -106,14 +106,26 @@
 			</div>
 			<div id="recordDiv">
 				<form>
-					<div class="ui-field-contain">
-						 <label for="text-1">Text input:</label>
-						 <input name="text-1" type="text" value="">
-					</div>
-					<div class="ui-field-contain">
-						<label for="textarea-1">Textarea:</label>
-						<textarea name="textarea-1" rows="8" cols="40"></textarea>
-					</div>
+					<label for="text-1">Text input:</label>
+					<input type="text" name="text-1" id="text-1" value="">
+					<label for="textarea-1">Textarea:</label>
+					<textarea name="textarea-1" id="textarea-1" class="ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow" style="height: 43px;"></textarea>
+					<fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
+						<div role="heading" class="ui-controlgroup-label"><legend>Checkbox:</legend></div>
+						<div class="ui-controlgroup-controls ">
+							<div class="ui-checkbox"><label for="checkbox-v-2a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-first-child">One</label><input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a" data-cacheval="true"></div>
+							<div class="ui-checkbox"><label for="checkbox-v-2b" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">Two</label><input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b" data-cacheval="true"></div>
+							<div class="ui-checkbox"><label for="checkbox-v-2c" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-last-child ui-checkbox-off">Three</label><input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c" data-cacheval="true"></div>
+						</div>
+					</fieldset>
+					<fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
+						<div role="heading" class="ui-controlgroup-label"><legend>Radio Button:</legend></div>
+						<div class="ui-controlgroup-controls ">
+							<div class="ui-radio"><label for="radio-choice-v-2a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on ui-first-child">One</label><input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked"></div>
+							<div class="ui-radio"><label for="radio-choice-v-2b" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">Two</label><input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off"></div>
+							<div class="ui-radio"><label for="radio-choice-v-2c" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off ui-last-child">Three</label><input type="radio" name="radio-choice-v-2" id="radio-choice-v-2c" value="other"></div>					
+						</div>
+					</fieldset>
 				</form>
 			</div>
         </div><!-- /demo-html -->

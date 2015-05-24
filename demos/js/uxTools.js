@@ -259,11 +259,14 @@
 		timeoutAction[timeoutAction.length] = setTimeout(function(){
 			for ( var j = 0 ; j < formElementList.length ; j++ ) {
 				var formElement = formElementList[j];
-				var elem = formElement.target;
+				var elem = document.getElementById(formElement.id);
 				elem.innerHTML = formElement.html;
 				elem.value = formElement.val;
 				elem.display = formElement.display;
-				elem.checked = formElement.checked;
+				if ( "CHECKBOX" === elem.type.toUpperCase() || "RADIO" === elem.type.toUpperCase() ) {
+					elem.checked = formElement.checked;
+					$( elem ).prop( "checked", elem.checked ).checkboxradio( "refresh" );
+				}
 			}
 		}, delay);
 	}
@@ -378,7 +381,7 @@
         }
     };
 	
-	function plotTimeDot ( data ) {
+	function plotDot ( data ) {
 		var draw = $.fn.uxTools.drawMap[data.currentTarget.id];
 		var r = Math.log( data.momentum ) * 2;
 		var circle = draw.circle( r );
@@ -413,6 +416,7 @@
 	function wrapFormElement(elem){
 		var formElement = new FormElement();
 		formElement.target = elem;
+		formElement.id = elem.id;
 		formElement.html = elem.innerHTML;
 		formElement.val = elem.value;
 		formElement.display = elem.display;
@@ -569,7 +573,6 @@
 			dataList[ dataList.length-1 ].speed = getMouseSpeed();
 			dataList[ dataList.length-1 ].momentum = getMouseMomentum();
 		}
-		//plotTimeDot(dataList[dataList.length-1]);
 	}
 	
 	function formRecord( event ){
