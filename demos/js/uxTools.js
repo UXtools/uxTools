@@ -16,6 +16,8 @@
 		uxTools.pause = $.fn.uxTools.pause;
 		uxTools.reset = $.fn.uxTools.reset;
 		uxTools.getStatus = $.fn.uxTools.getStatus;
+		uxTools.output = $.fn.uxTools.output;
+		uxTools.input = $.fn.uxTools.input;
 		// Public Function Definition End
 		
 		
@@ -252,6 +254,17 @@
 	$.fn.uxTools.isStop = function() {
 		return $.fn.uxTools.state === $.fn.uxTools.stateEnum.stop;
 	};
+	
+	$.fn.uxTools.output = function() {
+		var obj = {};
+		obj.mouseDataList = $.fn.uxTools.mouseDataList;
+		obj.formDataList = $.fn.uxTools.formDataList;
+		return JSON.stringify( obj );
+	};
+	
+	$.fn.uxTools.input = function() {
+		return $.fn.uxTools.state === $.fn.uxTools.stateEnum.stop;
+	};
 	// Public Function Definition End
 	
 	function formAction(formElementList, delay){
@@ -339,32 +352,6 @@
 			.css( "width", $(div).css("width") )
 			.css( "z-index", zIndex );
 	}
-
-    // Private Function for Debugging.
-    function debug() {
-		//printClear();
-		var debugStr = "";
-		//$("#debugInfo").html(  );
-		
-		if ( $.fn.uxTools.defaults.enableMouseRecord ) {
-			var dataList = $.fn.uxTools.mouseDataList;
-			if ( dataList.length > 0 ) {
-				var mouseData = dataList[dataList.length-1];
-				console( dataList[dataList.length-1] );
-				print("x:"+mouseData.x+"\ty:"+mouseData.y+"\trelationX:"+mouseData.relationX+"\trelationX:"+mouseData.relationX+"\toffsetLeft:"+mouseData.currentTarget.offsetLeft+"\toffsetTop:"+mouseData.currentTarget.offsetTop);
-			}	
-		}
-		
-		if ( $.fn.uxTools.defaults.enableFormRecord ) {
-			var formDataList = $.fn.uxTools.formDataList;
-			if ( formDataList.length > 0 ) {
-				var formData = formDataList[formDataList.length-1];
-				var formElementList = formData.formElementList;
-				console( formData );
-			}
-		}
-		
-    };
 	
 	function print(str) {
 		str = ( str + $("#debugInfo").val() ).substr(0, 1000);
@@ -406,7 +393,7 @@
 	}
 	
 	function FormElement(){
-		this.target;
+		this.id;
 		this.html;
 		this.val;
 		this.display;
@@ -415,7 +402,6 @@
 	
 	function wrapFormElement(elem){
 		var formElement = new FormElement();
-		formElement.target = elem;
 		formElement.id = elem.id;
 		formElement.html = elem.innerHTML;
 		formElement.val = elem.value;
@@ -495,7 +481,7 @@
 		data.formElementList = [];
 		var initElemList = $.fn.uxTools.initElemList;
 		for ( var i = 0 ; i < initElemList.length ; i++ ) {
-			var elem = initElemList[i].target;
+			var elem = document.getElementById( initElemList[i].id );
 			data.formElementList[ i ] = wrapFormElement(elem);
 		}
 		return data;

@@ -25,6 +25,60 @@
 	<script src="js/svg.js"></script>
 	<script src="js/svg.path.js"></script>
 	<script src="js/uxTools.js"></script>
+	<script>
+		$(function(){
+			var uxTools = $("#recordDiv").uxTools(null);
+			
+			$("#play").addClass('ui-disabled');
+			$("#pause").addClass('ui-disabled');
+			$("#stop").addClass('ui-disabled');
+			$("#reset").addClass('ui-disabled');
+			
+			$("#start").click(function(){
+				uxTools.start();
+				$("#start").addClass('ui-disabled');
+				$("#play").addClass('ui-disabled');
+				$("#pause").removeClass('ui-disabled');
+				$("#stop").removeClass('ui-disabled');
+				$("#reset").addClass('ui-disabled');
+			});
+			$("#play").click(function(){
+				uxTools.play();
+				$("#start").addClass('ui-disabled');
+				$("#play").addClass('ui-disabled');
+				$("#pause").addClass('ui-disabled');
+				$("#stop").removeClass('ui-disabled');
+				$("#reset").addClass('ui-disabled');
+			});
+			$("#stop").click(function(){
+				uxTools.stop();
+				$("#start").addClass('ui-disabled');
+				$("#play").removeClass('ui-disabled');
+				$("#pause").addClass('ui-disabled');
+				$("#stop").addClass('ui-disabled');
+				$("#reset").removeClass('ui-disabled');
+			});
+			$("#pause").click(function(){
+				uxTools.pause();
+				$("#start").removeClass('ui-disabled');
+				$("#play").removeClass('ui-disabled');
+				$("#pause").addClass('ui-disabled');
+				$("#stop").removeClass('ui-disabled');
+				$("#reset").addClass('ui-disabled');
+			});
+			$("#reset").click(function(){
+				uxTools.reset();
+				$("#start").removeClass('ui-disabled');
+				$("#play").addClass('ui-disabled');
+				$("#pause").addClass('ui-disabled');
+				$("#stop").addClass('ui-disabled');
+				$("#reset").addClass('ui-disabled');
+			});
+			$("#output").click(function(){
+				$("#outputJsonData").val( uxTools.output() ).textinput( "refresh" );
+			});
+		});
+	</script>
 </head>
 <body>
 <div data-role="page" class="jqm-demos" data-quicklinks="true">
@@ -46,57 +100,6 @@
         <h2>User Behavior Record</h2>
 
         <div data-demo-html="true">
-		    <script>
-			$(function(){
-				var uxTools = $("#recordDiv").uxTools(null);
-				
-				$("#play").addClass('ui-disabled');
-				$("#pause").addClass('ui-disabled');
-				$("#stop").addClass('ui-disabled');
-				$("#reset").addClass('ui-disabled');
-				
-				$("#start").click(function(){
-					uxTools.start();
-					$("#start").addClass('ui-disabled');
-					$("#play").addClass('ui-disabled');
-					$("#pause").removeClass('ui-disabled');
-					$("#stop").removeClass('ui-disabled');
-					$("#reset").addClass('ui-disabled');
-				});
-				$("#play").click(function(){
-					uxTools.play();
-					$("#start").addClass('ui-disabled');
-					$("#play").addClass('ui-disabled');
-					$("#pause").addClass('ui-disabled');
-					$("#stop").removeClass('ui-disabled');
-					$("#reset").addClass('ui-disabled');
-				});
-				$("#stop").click(function(){
-					uxTools.stop();
-					$("#start").addClass('ui-disabled');
-					$("#play").removeClass('ui-disabled');
-					$("#pause").addClass('ui-disabled');
-					$("#stop").addClass('ui-disabled');
-					$("#reset").removeClass('ui-disabled');
-				});
-				$("#pause").click(function(){
-					uxTools.pause();
-					$("#start").removeClass('ui-disabled');
-					$("#play").removeClass('ui-disabled');
-					$("#pause").addClass('ui-disabled');
-					$("#stop").removeClass('ui-disabled');
-					$("#reset").addClass('ui-disabled');
-				});
-				$("#reset").click(function(){
-					uxTools.reset();
-					$("#start").removeClass('ui-disabled');
-					$("#play").addClass('ui-disabled');
-					$("#pause").addClass('ui-disabled');
-					$("#stop").addClass('ui-disabled');
-					$("#reset").addClass('ui-disabled');
-				});
-			});
-			</script>
 			<div class="ui-field-contain" id="controlPanel">
 				<a class="ui-btn ui-btn-inline" href="#" id="start">Start</a>
 				<a class="ui-btn ui-btn-inline" href="#" id="pause">Pause</a>
@@ -109,7 +112,7 @@
 					<label for="text-1">Text input:</label>
 					<input type="text" name="text-1" id="text-1" value="">
 					<label for="textarea-1">Textarea:</label>
-					<textarea name="textarea-1" id="textarea-1" class="ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow" style="height: 43px;"></textarea>
+					<textarea name="textarea-1" id="textarea-1" class="ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow" style="height: 50px;"></textarea>
 					<fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
 						<div role="heading" class="ui-controlgroup-label"><legend>Checkbox:</legend></div>
 						<div class="ui-controlgroup-controls ">
@@ -119,7 +122,7 @@
 						</div>
 					</fieldset>
 					<fieldset data-role="controlgroup" class="ui-controlgroup ui-controlgroup-vertical ui-corner-all">
-						<div role="heading" class="ui-controlgroup-label"><legend>Radio Button:</legend></div>
+						<div role="heading" class="ui-controlgroup-label"><legend>Radio Buttons:</legend></div>
 						<div class="ui-controlgroup-controls ">
 							<div class="ui-radio"><label for="radio-choice-v-2a" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on ui-first-child">One</label><input type="radio" name="radio-choice-v-2" id="radio-choice-v-2a" value="on" checked="checked"></div>
 							<div class="ui-radio"><label for="radio-choice-v-2b" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">Two</label><input type="radio" name="radio-choice-v-2" id="radio-choice-v-2b" value="off"></div>
@@ -128,6 +131,12 @@
 					</fieldset>
 				</form>
 			</div>
+        </div><!-- /demo-html -->
+        
+        <h2>Output Record Json Data</h2>
+        <div data-demo-html="true">
+        	<a class="ui-btn ui-btn-inline" href="#" id="output">Output</a>
+        	<textarea name="outputJsonData" id="outputJsonData" class="ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput" style="height: 200px;"></textarea>
         </div><!-- /demo-html -->
 
 
