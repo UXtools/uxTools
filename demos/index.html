@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UX Tools</title>
+	<style>
+		#recordDiv {
+			height: 300px;
+			background: #EEEEEE;
+			border: 2px groove;
+			
+		}
+		#controlPanel {
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+    <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <script src="js/jquery.min.js"></script>
+    <script src="_assets/js/index.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/svg.js"></script>
+	<script src="js/svg.path.js"></script>
+	<script src="js/uxTools.js"></script>
+</head>
+<body>
+<div data-role="page" class="jqm-demos" data-quicklinks="true">
+
+    <div data-role="header" class="jqm-header">
+		<h2><a href="../" title="UX Tools"><h1>UX Tools</h1></a></h2>
+		<p></p>
+        <a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+        <a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content">
+
+        <h1>UX Designer Reserch Tools</h1>
+
+        <p>UX Tools are simple to use to help designer to get research data
+        </p>
+
+        <h2>User Behavior Record</h2>
+
+        <div data-demo-html="true">
+		    <script>
+			$(function(){
+				var uxTools = $("#recordDiv").uxTools(null);
+				
+				$("#play").addClass('ui-disabled');
+				$("#pause").addClass('ui-disabled');
+				$("#stop").addClass('ui-disabled');
+				$("#reset").addClass('ui-disabled');
+				
+				$("#start").click(function(){
+					uxTools.start();
+					$("#start").addClass('ui-disabled');
+					$("#play").addClass('ui-disabled');
+					$("#pause").removeClass('ui-disabled');
+					$("#stop").removeClass('ui-disabled');
+					$("#reset").addClass('ui-disabled');
+				});
+				$("#play").click(function(){
+					uxTools.play();
+					$("#start").addClass('ui-disabled');
+					$("#play").addClass('ui-disabled');
+					$("#pause").addClass('ui-disabled');
+					$("#stop").removeClass('ui-disabled');
+					$("#reset").addClass('ui-disabled');
+				});
+				$("#stop").click(function(){
+					uxTools.stop();
+					$("#start").addClass('ui-disabled');
+					$("#play").removeClass('ui-disabled');
+					$("#pause").addClass('ui-disabled');
+					$("#stop").addClass('ui-disabled');
+					$("#reset").removeClass('ui-disabled');
+				});
+				$("#pause").click(function(){
+					uxTools.pause();
+					$("#start").removeClass('ui-disabled');
+					$("#play").removeClass('ui-disabled');
+					$("#pause").addClass('ui-disabled');
+					$("#stop").removeClass('ui-disabled');
+					$("#reset").addClass('ui-disabled');
+				});
+				$("#reset").click(function(){
+					uxTools.reset();
+					$("#start").removeClass('ui-disabled');
+					$("#play").addClass('ui-disabled');
+					$("#pause").addClass('ui-disabled');
+					$("#stop").addClass('ui-disabled');
+					$("#reset").addClass('ui-disabled');
+				});
+			});
+			</script>
+			<div class="ui-field-contain" id="controlPanel">
+				<a class="ui-btn ui-btn-inline" href="#" id="start">Start</a>
+				<a class="ui-btn ui-btn-inline" href="#" id="pause">Pause</a>
+				<a class="ui-btn ui-btn-inline" href="#" id="stop">Stop</a>
+				<a class="ui-btn ui-btn-inline" href="#" id="play">Play</a>
+				<a class="ui-btn ui-btn-inline" href="#" id="reset">Reset</a>
+			</div>
+			<div id="recordDiv">
+				<form>
+					<div class="ui-field-contain">
+						 <label for="text-1">Text input:</label>
+						 <input name="text-1" type="text" value="">
+					</div>
+					<div class="ui-field-contain">
+						<label for="textarea-1">Textarea:</label>
+						<textarea name="textarea-1" rows="8" cols="40"></textarea>
+					</div>
+				</form>
+			</div>
+        </div><!-- /demo-html -->
+
+
+	</div><!-- /content -->
+	    <div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
+	    	<ul class="jqm-list ui-alt-icon ui-nodisc-icon">
+<li data-filtertext="" data-icon="home"><a href="#">Home</a></li>
+<li data-filtertext="User Behavior Record"><a href="#" data-ajax="false">User Behavior Record</a></li>
+		     </ul>
+		</div><!-- /panel -->
+
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+		<p></p>
+		<p>UX Tools</p>
+	</div><!-- /footer -->
+	
+	
+	
+	<!-- TODO: This should become an external panel so we can add input to markup (unique ID) -->
+    <div data-role="panel" class="jqm-search-panel" data-position="right" data-display="overlay" data-theme="a">
+		<div class="jqm-search">
+			<ul class="jqm-list" data-filter-placeholder="Search demos..." data-filter-reveal="true">
+<li data-filtertext="home" data-icon="home"><a href="#">Home</a></li>
+<li data-filtertext="User Behavior Record"><a href="#" data-ajax="false">User Behavior Record</a></li>
+			</ul>
+		</div>
+	</div><!-- /panel -->
+
+
+</div><!-- /page -->
+
+</body>
+</html>
